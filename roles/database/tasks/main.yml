@@ -1,0 +1,22 @@
+# tasks file for database
+#- name: Install MySQL
+#  user: momo
+#  hosts: mysqlserver
+#  become: True
+#  become_user: root
+#  vars:
+#  MySQL_root_pass: 123456
+- name: install mysql (Debian os family)
+  apt:
+    name: 
+      - mysql-server
+      - mysql-client
+    state: present
+    update_cache: yes  
+  when: ansible_facts['os_family'] == "Debian"
+#- name: Install MySQL
+# apt: package={{   item   }}   state=present   force=yes update_cache=yes cache_valid_time=3600
+# when: ansible_os_family == "Debian"
+# with_items:
+#   - mysql-server
+#   - mysql-client
